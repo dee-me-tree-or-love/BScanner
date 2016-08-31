@@ -2,6 +2,9 @@ from openpyxl import load_workbook
 
 class FileManager:
     # initialised with a workbook
+    wb = load_workbook(filename='students.xlsx', read_only=True)
+    ws = wb['alle']
+
     def __init__(self):
         wb = load_workbook(filename='students.xlsx', read_only=True)
         ws = wb['alle']  # ws is now an IterableWorksheet
@@ -11,8 +14,10 @@ class FileManager:
     def testStudentNumber(self,studentNumber):
         result = False
         for row in self.ws.rows:
+
             for cell in row:
                 if (studentNumber == cell.value):
+
                     result = True
                     return result
                     # print(cell.value)
@@ -32,7 +37,7 @@ class FileManager:
                 #a method to write shit (an array with numbers) to json file
     '''
 
-print("shit")
+#print("shit")
 
 ''' Not necessary right now
 while (True):
