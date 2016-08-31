@@ -1,3 +1,12 @@
+class Mimi:
+    def __int__(self,kek):
+        self.kiki = "fufu"
+
+class Complex:
+    def __init__(self, realpart):
+        self.r = realpart
+        self.i = 7
+
 #Binary search throught the list
 def Check(thelist, inpid):
     if inpid>0:
@@ -29,8 +38,11 @@ while item != 'bullshit':
     except:
         item = -1;
 
+    x = Complex(3)
+    print(x.i)
 
-
+    x = Mimi(3)
+    print(x.Kiki)
 
     #Analysing
     res,index = Check(alist,item)
@@ -38,10 +50,12 @@ while item != 'bullshit':
 
     if (not res) & (index >0):
         afrontsliceoflist = alist[:index]
-        alastsliceoflist = alist[index::]
-        afrontsliceoflist.append(item)
+        alastsliceoflist = alist[index:]
+        #afrontsliceoflist.append(item)
         print(alist," kek ",afrontsliceoflist)
+        print("take that: ", afrontsliceoflist, " + ", alastsliceoflist)
         alist = afrontsliceoflist
+        print
         alist = alist + alastsliceoflist
         print(alist, "TADA!")
     else:
