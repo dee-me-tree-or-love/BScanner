@@ -1,3 +1,4 @@
+'''
 class Mimi:
     def __int__(self,kek):
         self.kiki = "fufu"
@@ -60,3 +61,53 @@ while item != 'bullshit':
         print(alist, "TADA!")
     else:
         print("Already there")
+'''
+
+
+from openpyxl import load_workbook
+
+wb = load_workbook(filename='students.xlsx', read_only=True)
+ws = wb['alle']  # ws is now an IterableWorksheet
+
+
+def getValue(studentNumber):
+    for row in ws.rows:
+        for cell in row:
+            if (studentNumber == cell.value):
+                return cell.value
+                # print(cell.value)
+
+def getMax():
+    maximumStudnumber = -1
+    for row in ws.rows:
+        if isinstance(row[3].value,int):
+            if row[3].value>maximumStudnumber:
+                maximumStudnumber = row[3].value
+    return maximumStudnumber
+
+def getMin():
+    minStudentNumber = 3010000
+    for row in ws.rows:
+        if isinstance(row[3].value,int):
+            if row[3].value<minStudentNumber:
+                minStudentNumber = row[3].value
+    return minStudentNumber
+
+'''
+while (True):
+
+    print("Enter a Student Number:")
+    studentNr = input()
+    print(repr(studentNr))
+    print(studentNr)
+
+    student = getValue(int(studentNr))
+
+    for cell in student:
+        print(cell.column)
+        print(cell.value)
+'''
+
+
+print("Maximum student number is: ", getMax())
+print("Minimum student number is: ", getMin())

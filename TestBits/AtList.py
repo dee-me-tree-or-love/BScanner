@@ -3,7 +3,6 @@ class AttList:
     def __init__(self):
         self.StudList = []
 
-    def Add(self, ):
 
     def Check(self, inpid):
         if inpid > 0:
@@ -21,10 +20,10 @@ class AttList:
                         last = middle - 1
                     else:
                         first = middle + 1
-            index = middle;
+            index = middle
             return found, index
         else:
-            return False, -1;
+            return False, -1
 
 
     def Check(thelist, inpid):
@@ -42,7 +41,7 @@ class AttList:
                         last = middle - 1
                     else:
                         first = middle + 1
-            index = middle;
+            index = middle
             return found, index
         else:
-            return False, -1;
+            return False, -1
