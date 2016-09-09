@@ -1,0 +1,2 @@
+home/pi/proxytest/
+the data saved in the jason file is in the form of: [{date},[{list of visitors}]]
