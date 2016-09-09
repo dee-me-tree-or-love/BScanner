@@ -1,10 +1,19 @@
 # for only listing the stuff
 
-# import os
-# import time
+
+import time
 import json
 
 visitorList = []
+date = time.strftime("%d/%m/%Y");
+# to prevent loss of data, if RPi was restarted for instance
+try:
+    with open('data.txt', 'r') as infile: #reading is default
+        loadedDateAndList = json.load(infile)
+        date = loadedDateAndList[0] # date of the event
+        visitorList = loadedDateAndList[1] # visitors
+except:
+    pass
 
 while(True):
 

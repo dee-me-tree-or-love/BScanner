@@ -2,16 +2,19 @@ import json
 import pymysql.cursors # dunno why them and not connections...
 
 # from pprint import pprint
-from ExcelMngr import *
+from .ExcelMngr import *
 
 
 # should be connected, if everyhting's right
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password='Staddy32',
-                             db='proxy',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(
+                                 host='localhost',
+                                 user='root',
+                                 password='Staddy32',
+                                 db='proxy',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor,
+                                 autocommit=True # so that the connection commits the transactions automatically after
+                             )
 # the cursor which does
 cur = connection.cursor()
 

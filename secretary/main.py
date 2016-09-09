@@ -3,21 +3,25 @@ import pymysql.cursors # dunno why them and not connections...
 
 # from pprint import pprint
 from secretary.ExcelMngr import *
+import json
+import pymysql.cursors # dunno why them and not connections...
+
+# from pprint import pprint
+from secretary.ExcelMngr import *
 
 
 # should be connected, if everyhting's right
-try:
-    connection = pymysql.connect(host='localhost',
-                             user='user',
-                             password='',
-                             db='proxy',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
-
-    # the cursor which does
-    cur = connection.cursor()
-except:
-    pass
+connection = pymysql.connect(
+                                 host='localhost',
+                                 user='root',
+                                 password='Staddy32',
+                                 db='proxy',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor,
+                                 autocommit=True
+                             )
+# the cursor which does
+cur = connection.cursor()
 
 em = ExcelManager()
 
@@ -48,5 +52,7 @@ for potentialVisitor in VisitorList:
         if studentData: #kinda if not null
             i = i+1
             print(i,":")
-            print("Hooray! ", date, studentData[3].value, studentData[5].value) #name
-            #cur.execute("INSERT INTO studentvisits StudentNumber, Date values (",studentData[3],",",date,");")
+            print("Hooray! ", date, studentData[3].value) #name
+            insertQuery = "INSERT INTO studentvisits (StudentNumber,Date) values (" + str(studentData[3].value) + "," + str(date) + ");"
+            print(insertQuery)
+            cur.execute(insertQuery)
