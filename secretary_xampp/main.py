@@ -1,6 +1,7 @@
 import json
 import pymysql.cursors # dunno why them and not connections...
-
+import time
+from dateutil import parser
 # from pprint import pprint
 from .ExcelMngr import *
 
@@ -20,12 +21,21 @@ cur = connection.cursor()
 
 em = ExcelManager()
 
+# predefined variables for the student attributes from the excel sheet
+sNumberInd = 3
+sNameInd = 5
+
 print("Part1")
 scanlog = []
 try:
     with open('data.txt', 'r') as infile: #reading is default
         loadedDateAndList = json.load(infile)
-        date = loadedDateAndList[0] # date of the event
+        try:
+            dtobj = parser.parse(loadedDateAndList[0])
+            date = dtobj.strftime("%Y-%m-%d %H:%M:%S")
+        except Exception as excep:
+            print(excep," - oups!")
+            date = loadedDateAndList[0] # date of the event
         scanlog = loadedDateAndList[1] # visitors
         print(scanlog)
 except:
@@ -46,8 +56,15 @@ for potentialVisitor in VisitorList:
         studentData = em.getStudentInfo(potentialVisitor)
         if studentData: #kinda if not null
             i = i+1
-            print(i,":")
-            print("Hooray! ", date, studentData[3].value) #name
-            insertQuery = "INSERT INTO studentvisits (StudentNumber,Date) values (" + str(studentData[3].value) + "," + str(date) + ");"
+            print(i,":", studentData[sNameInd].value)
+            print("Hooray! ", date, studentData[sNumberInd].value) #name
+            insertQuery = "INSERT INTO studentvisits (StudentNumber, Name,Date) values (" \
+                          + str(studentData[sNumberInd].value) + ",'" \
+                          + str(studentData[sNameInd].value) + "','" \
+                          + date \
+                          + "');"
             print(insertQuery)
-            cur.execute(insertQuery)
+            try:
+                cur.execute(insertQuery)
+            except Exception as excep:
+                print(excep)

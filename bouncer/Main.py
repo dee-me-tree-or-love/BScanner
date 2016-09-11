@@ -5,12 +5,12 @@ import time
 import json
 
 visitorList = []
-date = time.strftime("%d/%m/%Y");
+eventdate = time.strftime("%Y-%m-%d %H:%M:%S");
 # to prevent loss of data, if RPi was restarted for instance
 try:
     with open('data.txt', 'r') as infile: #reading is default
         loadedDateAndList = json.load(infile)
-        date = loadedDateAndList[0] # date of the event
+        eventdate = loadedDateAndList[0] # date of the event
         visitorList = loadedDateAndList[1] # visitors
 except:
     pass
@@ -27,7 +27,7 @@ while(True):
         uniqueStudentList = set(uniqueStudentList)
         print(uniqueStudentList)
         '''
-        listToSave = visitorList
+        listToSave = [eventdate,visitorList]
         with open('data.txt', 'w') as outfile:
             json.dump(listToSave, outfile)
         print("noice")
