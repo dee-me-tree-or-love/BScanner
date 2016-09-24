@@ -1,0 +1,7 @@
+{
+ "host":"localhost",
+ "user":"root",
+ "password":"Staddy32",
+ "db":"proxy",
+ "charset":"utf8mb4"
+}
