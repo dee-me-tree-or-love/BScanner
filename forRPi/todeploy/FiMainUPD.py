@@ -10,7 +10,7 @@ import os
 
 # reserved words:
 extcomm = 666
-secrcomm = "secr"
+secrcomm = "email"
 
 
 visitorList = []
@@ -60,4 +60,4 @@ if(studnumber == secrcomm):
 	print("bye-bye, now secretary is in control")
 	##run()
 	# this works though
-	#os.system("python SecMain.py")
+	os.system("python Mailer.py")
