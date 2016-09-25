@@ -1,6 +1,6 @@
 # Import smtplib for the actual sending function
 import smtplib
-
+import sys, os
 # Import the email modules we'll need
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -46,5 +46,7 @@ try:
     s.send_message(msg)
     s.quit()
     print("sent")
+    #deleting the file so that next time the process is started, we make a new thing:
+    os.remove(textfile)
 except Exception as ex:
     print(ex);
