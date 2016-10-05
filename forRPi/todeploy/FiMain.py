@@ -24,12 +24,12 @@ try:
 except:
     pass
 
-studnumber = 0;	
+studnumber = 0;
 while(True):
     try:
         studnumber = input()
-	except:
-	    pass
+    except:
+        pass
     #unless the exit was entered
     if(studnumber!=extcomm and studnumber!=secrcomm):
 
